@@ -1,0 +1,40 @@
+""" from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+
+housing = fetch_california_housing()
+
+X_train_full, X_test, y_train_full, y_test = train_test_split(
+    housing.data, housing.target.reshape(-1, 1), random_state=42)
+X_train, X_valid, y_train, y_valid = train_test_split(
+    X_train_full, y_train_full, random_state=42) """
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+housing = pd.read_csv("./datasets/test-data.csv")
+housing_target = pd.read_csv("./datasets/test-target.csv")
+
+X_train_full, X_test, y_train_full, y_test = train_test_split(
+    housing, housing_target.values.reshape(-1, 1), random_state=42)
+X_train, X_valid, y_train, y_valid = train_test_split(
+    X_train_full, y_train_full, random_state=42) 
+
+
+#header_cols = housing.feature_names + ["MedianHouseValue"]
+header_cols = housing.columns.tolist() + ["MedianHouseValue"]v
+
+
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+# Replace this with the actual path to where you saved the font file
+path = 'C:\\Users\\an9383\\AppData\\Local\\Microsoft\\Windows\\Fonts\\NanumBarunGothic.ttf' 
+font_name = fm.FontProperties(fname=path).get_name()
+
+plt.rc('font', family=font_name)
+plt.rcParams['axes.unicode_minus'] = False
+
+import kagglehub
+
+# Download latest version
+path = kagglehub.dataset_download("camnugent/california-housing-prices")
